@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="icon" href="icon.png">
+	<title>www.xo.com</title>
+	<style type="text/css">
+		
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#continer{
+			width: 255px;
+			text-align: center;
+			color: white;
+			margin: auto;
+			font-weight: 500;
+		}
+		#title{
+			background: #457fca;
+			padding: 5px 0;
+			margin: 5px 0;
+		}
+		span{
+			color: #fa0;
+		}
+		.square{
+			width: 80px;
+			height: 80px;
+			background: #457fca;
+			float: left;
+			margin: 2px;
+			font-size: 60px;
+		}
+		.square:hover{
+			background: #000;
+		}
+
+
+
+	</style>
+</head>
+<body>
+
+<div id="continer">
+	<div id="title"><span>X</span> GAME <span>O</span></div>
+
+	<div class="square" id="item1" onclick="play(this.id)"></div>
+	<div class="square" id="item2" onclick="play(this.id)"></div>
+	<div class="square" id="item3" onclick="play(this.id)"></div>
+
+	<div class="square" id="item4" onclick="play(this.id)"></div>
+	<div class="square" id="item5" onclick="play(this.id)"></div>
+	<div class="square" id="item6" onclick="play(this.id)"></div>
+
+	<div class="square" id="item7" onclick="play(this.id)"></div>
+	<div class="square" id="item8" onclick="play(this.id)"></div>
+	<div class="square" id="item9" onclick="play(this.id)"></div>
+
+
+</div>
+
+
+<script type="text/javascript">
+	
+//variables
+let parti = "x"
+let title = document.querySelector("#title")
+let squares = []
+
+function fin(num1,num2,num3){
+			title.innerHTML =" we have a winner";
+		document.getElementById("item"+num1).style.background = "#000";
+		document.getElementById("item"+num2).style.background = "#000";
+		document.getElementById("item"+num3).style.background = "#000";
+		setInterval(function () {title.innerHTML += "."},1000);
+		setTimeout(function () {location.reload()},4000);
+
+}
+function winner() {
+	for (var i = 1 ; i < 10; i++) {
+		squares[i] = document.getElementById("item"+i).innerHTML;
+	}
+			if ( squares[1] == squares[2] && squares[2] == squares[3] && squares[1] != "") { fin(1,2,3); }
+	else 	if ( squares[4] == squares[5] && squares[5] == squares[6] && squares[4] != "") { fin(4,5,6); }
+	else 	if ( squares[7] == squares[8] && squares[8] == squares[9] && squares[7] != "") { fin(7,8,9); }
+	else 	if ( squares[1] == squares[4] && squares[4] == squares[7] && squares[1] != "") { fin(1,4,7); }
+	else 	if ( squares[2] == squares[5] && squares[5] == squares[8] && squares[2] != "") { fin(2,5,8); }
+	else 	if ( squares[3] == squares[6] && squares[6] == squares[9] && squares[3] != "") { fin(3,6,9); }
+	else	if ( squares[1] == squares[5] && squares[5] == squares[9] && squares[1] != "") { fin(1,5,9); }
+	else 	if ( squares[3] == squares[5] && squares[5] == squares[7] && squares[3] != "") { fin(3,5,7); }
+}
+
+function play(id) {
+
+	let ida = document.getElementById(id)
+	if (parti === "x" && ida.innerHTML == "") {
+		ida.innerHTML = "x"
+		parti =  "o"
+		title.innerHTML = "o"
+	}
+	if (parti === "o" && ida.innerHTML == "") {
+		ida.innerHTML = "o"
+		parti =  "x"
+		title.innerHTML = "x"
+	}
+	winner();
+}
+
+ // ${squares[num1]}
+
+</script>
+
+
+
+</body>
+</html>
